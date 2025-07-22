@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Successful</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f5;
+            padding: 50px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: #0066cc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #0066cc;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Thank you for registering, {{ name }}!</h2>
+        <p>You have successfully registered for the event: <strong>{{ event }}</strong>.</p>
+
+        <h3>List of All Registered People:</h3>
+
+        {% if registrations %}
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Event</th>
+            </tr>
+            {% for user in registrations %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.event }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No other registrations yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
